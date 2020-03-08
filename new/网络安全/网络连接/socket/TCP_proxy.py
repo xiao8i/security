@@ -59,7 +59,7 @@ def proxy_handler(client_socket, remote_host, remote_port, receive_first):
 			client_socket.close()
 			remote_socket.close()
 			print("connection is closed")
-		break
+			break
 
 
 def hexdump(src, length = 16):
