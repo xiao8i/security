@@ -1,0 +1,6 @@
+# 一般通过url方式打开Web连接，基于HTTP/HTTPS，工具有urllib、request等
+HTTP连接无状态，不知道以前干过什么，也不会知道是谁，所以可以用用户名/密码方式，但是如果每次发出请求都需要填入用户名/密码很麻烦，浏览器自动填写大大简化（cookie），但是这样的话cookie被盗=用户名/密码被盗，很危险，所以第一次登陆后，服务端给出生成的cookie用于认证用户，保护了用户名/密码：
+cookie：服务器维护有关cookie的数据库，数据库记录用户各种信息，甚至操作，所以是很有用的。服务端通过set-cookie响应给浏览器
+session：更安全，session保存关键信息，服务器在内存维护session（注定了服务器不能长时间保存），并通过sessionid响应给浏览器，浏览器关闭后清除sessionid，一定程度保证了认证在客户端的安全（cookie可以在客户端长时间保存有风险）
+token：解决了服务器内存维护session的开销，以及分布式存储session的问题，token其实就是session的升级版，服务端把userid进行签名形成token（令牌）响应给客户端，以后服务端只需要验证userid的签名即可认证userid即用户。
+当然无法保证cookie、session和token被窃取，无论是在客户端、服务端还是中间过程。
