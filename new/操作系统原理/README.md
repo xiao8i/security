@@ -13,7 +13,7 @@
 	在需要暂存数据的时候，应该使用栈，更方便
 	【】默认ds为段地址，除了【bp】段地址为ss
 	寻址【bx】.idata【si】与C一致
-	call 标号：要先将cs、ip入栈 ret：ip获得栈顶内容 retf：cs：ip获得栈顶内容 call、ret配对用
+	call 标号：要先将cs、ip入栈 ret：ip获得栈顶内容 retf：cs：ip获得栈顶内容 call、ret配对用其实call标号相当于push ip jump标号，ret就是pop ip
 	ROM存放程序BIOS，存放硬件检测和初始化程序，还有中断例程。操作系统DOS也有中断例程，并一般通过DOS的中断例程运行自己设计的程序。
 	cli、程序、sti将保证程序不会中断
 C语言：char a开辟一块内存空间a存储字符串
