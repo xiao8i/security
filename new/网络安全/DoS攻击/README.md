@@ -11,3 +11,4 @@ Tear Drop： 操纵分片数据包的分片偏移量，使其大于实际偏移�
 Smurf Attack:  ICMP发送请求就会有响应，发送大量源IP地址为服务器地址的ICMP包，导致服务器被大量ICMP响应吞没。
 HTTP Flooding： 大量调用正常服务，例如大量请求URL使得Web服务器瘫痪。服务器往往会在几秒钟内完成响应终止连接，所以需要结合DDoS。
 DDoS：使用大量主机（也可以是其他网络设备路由器等）发动攻击，其成功率更高。  
+Hash-Flooding Attack：（提交具有相同哈希值的key，服务器处理hash table复杂度O(n)->O(n^2)会消耗大量资源，解决办法加盐称之为哈希种子(hash seed)）
