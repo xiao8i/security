@@ -15,3 +15,4 @@ __wakeup将在序列化之后立即被调用
 http://p0sec.net/index.php/archives/114/
 
 https://www.anquanke.com/post/id/84922
+防御：唯一安全的架构模式是不接受来自不受信源的序列化对象，或使用只允许原始数据类型的序列化媒体。

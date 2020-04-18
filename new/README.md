@@ -41,3 +41,7 @@ VUL（Vulnerability）
 
 CPE（Common Platform Enumeration）
 以标准化方式为软件应用程序、操作系统及硬件命名的方法
+
+BWAPP：一款非常好用的漏洞演示平台  	测试平台软件DVWA
+绕过https://blog.csdn.net/SKI_12/article/details/69952026
+OWASP 	https://blog.csdn.net/qq_34815358/article/details/86620487
