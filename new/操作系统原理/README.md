@@ -1,7 +1,7 @@
 #  栈向内存的低地址生长，即栈底在高地址，数据向内存高地址生长，即高位低地址
 一个程序的运行栈http://blog.csdn.net/lieist/article/details/44110475
 汇编语言：寄存器可以认为是特殊的内存空间，注意区分是对寄存器操作（区分ip类的值有命令索引地址功能，而ax类就是值），还是对内存空间进行操作。通过CS：IP指向当前指令，执行指令后IP自动到下一指令处。通过SS：SP指向栈顶。通过ds：【】对内存空间数据进行处理（也可以通过栈的push、pop）
-	jmp 3:0B16 CS=1000H，IP=0B16H 意思是命令指向地址为10B16H的内存（注只能在debug中使用，编译报错）若要修改cs可以jmp dword ptr ds：【0】或者jmp dword ptr 【bx】，因为cs是段寄存器
+	jmp 3:0B16 CS=0003H，IP=0B16H 意思是命令指向地址为10B16H的内存（注只能在debug中使用，编译报错）若要修改cs可以jmp dword ptr ds：【0】或者jmp dword ptr 【bx】，因为cs是段寄存器
 	jmp ax  用ax寄存器的值修改IP
 	mov ax，1000H ax寄存器存储1000H，ax等寄存器没有指向功能
 	mov ds，ax  ds数据段寄存器存储ax值，并通过ds【】形式指向数据（注mov 指令不能在段寄存器cs、ds、ss和数据间进行，段寄存器和寄存器/内存单元【】则可）（且应用jmp替代mov操作cs、ip）

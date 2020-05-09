@@ -15,7 +15,7 @@ public class Hello {
 字符串的不可变是指字符串内容不可变，赋新值会重新引用。
 new操作符可以创建一个实例Person ming = new Person();
 可变参数 public void setNames(String... names) 可以不用定义数组直接传入，还可以保证无法传入null，因为传入0个参数时，接收到的实际值是一个空数组而不是null
-Java使用extends关键字来实现继承：
+Java使用extends关键字来实现继承：在Java中，任何class的构造方法，第一行语句必须是调用父类的构造方法。如果没有明确地调用父类的构造方法，编译器会帮我们自动加一句super();
 class Student extends Person {
     protected int score;
 
@@ -58,7 +58,7 @@ String s = new String(new char[] {'H', 'e', 'l', 'l', 'o', '!'}); // char[] -> S
 SecureRandom：生成安全的随机数
 通过Class实例获取class信息的方法称为反射（Reflection）。Class cls = String.class; 通过一个class的静态变量class获取/String s = "Hello"; Class cls = s.getClass();通过该实例变量提供的getClass()方法获取： /Class cls = Class.forName("java.lang.String");通过一个class的完整类名
 @注解；注释会被编译器直接忽略，注解则可以被编译器打包进入class文件，因此，注解是一种用作标注的“元数据”。
-Java的泛型是采用擦拭法实现的；擦拭法决定了泛型<T>：在编译过程中实际为object
+泛型就是定义一种模板，Java的泛型是采用擦拭法实现的；擦拭法决定了泛型<T>：在编译过程中实际为object
 java.util包主要提供了以下三种类型的集合：区别于array数组初始化后大小不可变；数组只能按索引顺序存取。
 List：一种有序列表的集合，ArrayList和LinkedList两种实现；
 Set：一种保证没有重复元素的集合，例如，所有无重复名称的Student的Set；
@@ -104,3 +104,22 @@ Java的RMI远程调用是指，一个JVM中的代码可以通过网络实现远�
 Java的RMI严重依赖序列化和反序列化，而这种情况下可能会造成严重的安全漏洞，因为Java的序列化和反序列化不但涉及到数据，还涉及到二进制的字节码，即使使用白名单机制也很难保证100%排除恶意构造的字节码。因此，使用RMI时，双方必须是内网互相信任的机器，不要把1099端口暴露在公网上作为对外服务。
 XML是可扩展标记语言（eXtensible Markup Language）的缩写，它是是一种数据表示格式，可以描述非常复杂的数据结构，常用于传输和存储数据。
 JSON是JavaScript Object Notation的缩写，它去除了所有JavaScript执行代码，只保留JavaScript的对象格式。XML的特点是功能全面，但标签繁琐，格式复杂。在Web上使用XML现在越来越少，取而代之的是JSON这种数据结构。
+使用Statement拼字符串非常容易引发SQL注入的问题，要避免SQL注入攻击，一个办法是针对所有字符串参数进行转义，还有一个办法就是使用PreparedStatement。PreparedStatement始终使用?作为占位符，并且把数据连同SQL本身传给数据库，
+适配器模式是Adapter，也称Wrapper
+JavaEE是Java Platform Enterprise Edition的缩写，即Java企业平台。实际上是完全基于JavaSE，只是多了一大堆服务器相关的库以及API接口。目前流行的基于Spring的轻量级JavaEE开发架构，使用最广泛的是Servlet和JMS(JMS：Java Message Service，用于消息服务)，以及一系列开源组件。
+HTTP 3.0为了进一步提高速度，将抛弃TCP协议，改为使用无需创建连接的UDP协议，目前HTTP 3.0仍然处于实验阶段。
+支持Servlet API的Web服务器。常用的服务器有：
+Tomcat：由Apache开发的开源免费服务器；
+Jetty：由Eclipse开发的开源免费服务器；
+GlassFish：一个开源的全功能JavaEE服务器。
+还有一些收费的商用服务器，如Oracle的WebLogic，IBM的WebSphere。
+我们编写的Servlet并不是直接运行，而是由Web服务器加载后创建实例运行，所以，类似Tomcat这样的Web服务器也称为Servlet容器。
+JSP是Java Server Pages的缩写，它的文件必须放到/src/main/webapp下，文件名必须以.jsp结尾，整个文件与HTML并无太大区别，但需要插入变量，或者动态输出的地方，使用特殊指令<% ... %>。
+包含在<%--和--%>之间的是JSP的注释，它们会被完全忽略；包含在<%和%>之间的是Java代码，可以编写任意Java代码；如果使用<%= xxx %>则可以快捷输出一个变量的值。
+JSP页面内置了几个变量：out：表示HttpServletResponse的PrintWriter；session：表示当前HttpSession对象；request：表示HttpServletRequest对象。
+我们把UserServlet看作业务逻辑处理，把User看作模型，把user.jsp看作渲染，这种设计模式通常被称为MVC：Model-View-Controller，即UserServlet作为控制器（Controller），User作为模型（Model），user.jsp作为视图（View）
+类似Tomcat这样的Web服务器，运行的Web应用程序通常都是业务系统，因此，这类服务器也被称为应用服务器。应用服务器并不擅长处理静态文件，也不适合直接暴露给用户。通常，我们在生产环境部署时，总是使用类似Nginx这样的服务器充当反向代理和静态服务器，只有动态请求才会放行给应用服务器。使用Nginx配合Tomcat服务器，可以充分发挥Nginx作为网关的优势，既可以高效处理静态文件，也可以把https、防火墙、限速、反爬虫等功能放到Nginx中，使得我们自己的WebApp能专注于业务逻辑。
+容器是一种为某种特定组件的运行提供必要支持的一个软件环境。Spring提供的容器又称为IoC容器Inversion of Control，直译为控制反转。IoC又称为依赖注入（DI：Dependency Injection），它解决了一个最主要的问题：将组件的创建+配置与组件的使用相分离，并且，由IoC容器负责管理组件的生命周期。
+AOP是Aspect Oriented Programming，即面向切面编程。AOP技术看上去比较神秘，但实际上，它本质就是一个动态代理，让我们把一些常用功能如权限检查、日志、事务等，从每个业务方法中剥离出来。使用AOP时，必须适合特定的场景。
+编写数据访问层的时候，可以使用DAO模式。DAO即Data Access Object的缩写。把关系数据库的表记录映射为Java对象的过程就是ORM：Object-Relational Mapping。
+JPA：Java Persistence API，JPA就是JavaEE的一个ORM标准，

