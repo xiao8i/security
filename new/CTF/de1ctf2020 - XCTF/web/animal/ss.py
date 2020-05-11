@@ -7,6 +7,7 @@ def main():
     #sk.setblocking(True)
     while True:
         conn,addr = sk.accept()
+        print(addr)
         data = conn.recv(1024).decode()
         print(data)
         conn.sendall(bytes("HTTP/1.1 200 OK\r\n\r\n", "utf8"))

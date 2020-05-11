@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(32)
 
 # Some bad words.
-blacklist = ['+', ',', ':', '\'\'', '""', '%', 'lower', 'upper', 'builtin', 'fork', 'exec', 'walk', 'open', 'spawn', 'reload', 'exit', 'bin', 'sh', 'cat', 'config', 'secret', 'key', 'flag']
+blacklist = ['+', ',', '\'', ':', '\'\'', '""', '%', 'lower', 'upper', 'builtin', 'fork', 'exec', 'walk', 'open', 'spawn', 'reload', 'exit', 'bin', 'sh', 'cat', 'config', 'secret', 'key', 'flag']
 
 # Posix is a bad module, filter it all.
 for i in dir(posix):
